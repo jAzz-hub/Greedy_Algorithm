@@ -31,10 +31,25 @@
 Este repositório apresenta a solução implementada para o desafio proposto na disciplina de Algoritmos e Estruturas de Dados. O problema proposto foi que houvesse um algoritmo que realizasse uma pesquisa e armazenamento de valores contidos em  uma matriz de maneira gulosa.
 
 ### Desafio
-Foi proposto que...
+Um programa que leia $K$ matrizes $N$ x $N$, tal que $N \in \mathbb{Z}$ e $N\geq 0$.
 
+1. Organização de matrizes para processamento.
+2. Iniciar a busca de um conjunto de coordenadas em linhas e colunas, sendo essa coordenada pertencente à matriz. Vale ressaltar que a coordenada será estabelecida pelo usuário, ou concebida através da leitura de uma arquivo.
+3. São direções válidas para caminhamento:
+    
+    3.1. Avançar para a próxima coluna.
+    
+    3.2. Retroceder para a coluna anterior.
+    
+    3.3. Saltar para a linha de baixo.
+    
+    3.4. Ir em diagonal para baixo.
+4. A direção de escolha deve contem o maior valor adjascente dentre as direções possíveis.
+5. Caso haja um valor em comum entre as direções de maior valor, é  necessário que uma regra de caminhamento seja estabelecida. E que esta enquanto padrão seja a melhor decisão de caminhamento.
+6. Ao ter como posição atual o elemento de uma matriz posicionado na última linha e coluna simultâneamente, ou seja o elemento na coordenada de maior valor de maior $i$ e $j$, tais que, $i,j \in$ onde $  0 \leq i\leq N$ e $0 \leq j \leq N$.
+
+<!--Prioridade alta-->
 ### Solução
-Para solucionar foi realizado...
 
 ### Imagens e exemplos de implementação:
 //Usando uma matriz de exemplo com latex
@@ -69,10 +84,59 @@ Considerando isso, são propostos por Cormen(2012) os Elementos da Estratégia G
 
 </p>
 
+<!--Prioridade baixa-->## Bibliotecas
+
+## Compilação e Execução
+Para compilação e execução do código é necessário que seja criado um arquivo Makefile. Para uso deste arquivo da forma correta, siga as diretrizes de execução abaixo:
+
+<table>
+
+<tr>
+<td colspan = '1'><strong>Comandos</strong></td>
+<td align = "center" colspan = '1'><strong>Funções</strong></td>
+</tr>
+
+<tr>
+<td align="center">make clean</td>
+<td align="center">Deleta o arquivo executável e todos os arquivos objetos do diretório. (GNU make, 2023)</td>
+</tr>
+<tr>
+<td align="center">make</td>
+<td align="center">Compila diferentes partes do programa através do g++ e cria um arquivo executável na pasta build. </td>
+</tr>
+<tr>
+<td align="center">make run </td>
+<td align="center">Executa o programa da pasta build após a realização da compilação. (Michel Pires, 2023)</td>
+</tr>
+</table>
+
 ## Referências <!--Idea!! CITAR O NÍVIO ZIVIANI-->
 
-[1] Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Algoritmos:  Teoria e Prática. 3ª edição. Elsevier, 2012
+[1] CORMEN, T. H. et al. Introduction to Algorithms, third edition. [s.l.] MIT Press, 2009. Acessador em 20 de Março de 2023.
 
-[2] Michel Pires - Repositório GitHub, @mpiress: GenerateDataToMatrix - link: https://github.com/mpiress/GenerateDataToMatrix/blob/main/src/mat.h. Acessado em 15 de Março de 2022.
+[2] Michel Pires - Repositório GitHub, @mpiress: GenerateDataToMatrix - Disponível em: https://github.com/mpiress/GenerateDataToMatrix/blob/main/src/mat.h. Acessado em 15 de Março de 2023.
+
+[3] GNU make. Disponível em: <https://www.gnu.org/software/make/manual/make.html>. Acessado em 21 de Março de 2023.
+
+‌
+## Contato
+
+<div style="display: inline-block;">
+<a href="https://t.me/joaaogg">
+<img align="center" height="20px" width="90px" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
+</a>
+
+<a href="https://www.linkedin.com/in/joao-gustavo-silva/">
+<img align="center" height="20px" width="90px" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+
+</div>
+
+<p> </p>
+
+<a style="color:black" href="mailto:michel@cefetmg.br?subject=[GitHub]%20Source%20Dynamic%20Lists">
+✉️ <i>joaogu.2001@gmail.com</i>
+</a>
+
 
 </div>

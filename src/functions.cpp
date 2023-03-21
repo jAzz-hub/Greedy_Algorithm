@@ -72,9 +72,54 @@ unsigned short int* RoadMapDefiner(vector<unsigned short int> Steps,unsigned sho
     return Route;
 }
 
-void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsigned short int HowManySteps, MatrixElement *FinalMatrix,unsigned short int size)
+void MapOfTheJourney(unsigned short int *iRoute,unsigned short int *jRoute,unsigned short int size, unsigned short int NumberOfSteps)
 {
-    unsigned short int SumOfEveryStep = 0;
+   unsigned short int BinaryMatrix[size][size];
+    
+    for(unsigned short int idxi=0;idxi<size;idxi++)
+    {
+        for(unsigned short int idxj=0;idxj<size;idxj++)
+        {
+            BinaryMatrix[idxi][idxj]=999;
+        } 
+    }
+
+    for(int index = 0;index<NumberOfSteps;index++)
+    {
+        unsigned short int i = iRoute[index];
+        unsigned short int j = jRoute[index];
+
+        BinaryMatrix[i][j] = index;
+    }
+
+    for(unsigned short int column = 0;column<size;column++)
+    {   
+        if(column == 0)
+            cout<<"i / j\t|"<<column;
+        else 
+            cout<<"|\t|"<<column;
+
+    }
+    cout<<"\n";
+
+    for(unsigned short int idxi=0;idxi<size;idxi++)
+    {
+        cout<<"\n|"<<idxi<<"|\t";
+        for(unsigned short int idxj=0;idxj<size;idxj++)
+        {
+            if(idxj==0)
+                cout<<BinaryMatrix[idxi][idxj];
+            
+            else
+                cout<<"\t"<<BinaryMatrix[idxi][idxj];
+        }
+        cout<<"\n------------------------------------------------------------------------------------";
+    }
+}
+
+void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsigned short int HowManySteps, MatrixElement *FinalMatrix,unsigned short int size, unsigned int *GlobalSum)
+{
+    unsigned short int LocalSumOfSteps = 0;
 
     cout<<"A trajetória realizada com as especificações de pesquisa na matriz foram:"<<"\n";
     cout<<"   Passos         [i]   [j]   [Valor]"<<"\n";
@@ -84,11 +129,13 @@ void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsign
     {
         cout<<index<<"º passo";
         cout<<"\t | "<<iRoute[index]<<" |"<<" | "<<jRoute[index]<<" | "<< " | "<<(*(FinalMatrix+iRoute[index]*size+jRoute[index])).Element<<" | \n";
-        SumOfEveryStep+=(*(FinalMatrix+iRoute[index]*size+jRoute[index])).Element;
+        LocalSumOfSteps+=(*(FinalMatrix+iRoute[index]*size+jRoute[index])).Element;
     }
     
     cout<<"-----------------------------------------\n";
-    cout<<"A soma total foi:\t"<<SumOfEveryStep<<"\n\n";
+    cout<<"A soma local foi:\t"<<LocalSumOfSteps<<"\n\n";
+
+    *GlobalSum+=LocalSumOfSteps;
 
 }
 
@@ -216,6 +263,26 @@ void SouthWestPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,uns
     *lastj = *j;
     *i = Possiblei[*IndexHigher];
     *j = Possiblej[*IndexHigher];
+}
+
+void JourneyMetrics(unsigned short int ReadedMatrixes, unsigned short int GlobalSum)
+{
+    //Ideia de implementação:
+        // [ ] - Mostrar a média de passos dados por matriz.
+        // [ ] - Mostrar o número de passos dados no total
+        // [ ] - Tentar elaborar uma métrica de score ou rankeamento usando 
+            //      (Soma total dos elementos)/ (Número de passos dados)
+        /*
+            
+            A pergunta que fica após essa métrica é se não existe uma forma melhor de percorrer essa matriz
+            Ou seja, gerar um valor maior ou menor flexibilizando as regras de caminhamento, ou mudando a
+            forma com que eles foram realizados.
+
+        */
+
+    cout<<"\n------------------------------Resumo de Métricas------------------------------\n";
+    cout<<"\nSoma total dos elementos:............................................"<<GlobalSum;
+    cout<<"\nNúmero de matrizes lidas:............................................"<<ReadedMatrixes;
 }
 
 #endif

@@ -36,7 +36,7 @@ int main()
     unsigned short int MatrixColumns = 0;
     unsigned short int MatrixCounting = 0;
     ifstream File("input.data");
-
+    unsigned int GlobalSum = 0;
 
     // Percorrendo arquivo linha por linha e armazenando em Line:
     while (getline(File, Line))
@@ -60,6 +60,7 @@ int main()
                 bool S,SW,SE,E,W;
                 vector<unsigned short int> StepsOni;
                 vector<unsigned short int> StepsOnj;
+                vector<MatrixElement> StepsWeight;
                 unsigned short int HowManySteps = 0;
                 unsigned short int i = 0;
                 unsigned short int j = 0;
@@ -67,6 +68,7 @@ int main()
                 CoordinateDefinition(&i,&j);
                 StepsOni.push_back(i);
                 StepsOnj.push_back(j);
+                StepsWeight.push_back(FinalMatrix[i][j]);
 
                 unsigned short int lasti=i;
                 unsigned short int lastj=j;
@@ -81,6 +83,7 @@ int main()
                         FivePossibleWays((MatrixElement *)FinalMatrix,&i,&j,size,&IndexHigher,&lasti,&lastj);
                         StepsOni.push_back(i);
                         StepsOnj.push_back(j);
+                        StepsWeight.push_back(FinalMatrix[i][j]);
                         HowManySteps++;
                     }
 
@@ -89,6 +92,7 @@ int main()
                         SouthEastPossibleWays((MatrixElement *)FinalMatrix,&i,&j,size,&IndexHigher,&lasti,&lastj);
                         StepsOni.push_back(i);
                         StepsOnj.push_back(j);
+                        StepsWeight.push_back(FinalMatrix[i][j]);
                         HowManySteps++;
                     }
 
@@ -98,6 +102,7 @@ int main()
                         SouthWestPossibleWays((MatrixElement *)FinalMatrix,&i,&j,size,&IndexHigher,&lasti,&lastj);
                         StepsOni.push_back(i);
                         StepsOnj.push_back(j);
+                        StepsWeight.push_back(FinalMatrix[i][j]);
                         HowManySteps++;
                     }
 
@@ -110,6 +115,7 @@ int main()
                         j = j+1;
                         StepsOni.push_back(i);
                         StepsOnj.push_back(j);
+                        StepsWeight.push_back(FinalMatrix[i][j]);
                         HowManySteps++;
                     }
 
@@ -120,12 +126,13 @@ int main()
                         HowManySteps++;
                         StepsOni.push_back(i);
                         StepsOnj.push_back(j);
+                        StepsWeight.push_back(FinalMatrix[i][j]);
 
                         unsigned short int *iRoute = RoadMapDefiner(StepsOni,HowManySteps);
                         unsigned short int *jRoute = RoadMapDefiner(StepsOnj,HowManySteps);
 
-                        RoadMapViewer(iRoute,jRoute,HowManySteps,(MatrixElement *)FinalMatrix,size);
-
+                        RoadMapViewer(iRoute,jRoute,HowManySteps,(MatrixElement *)FinalMatrix,size , &GlobalSum);
+                        MapOfTheJourney(iRoute,jRoute,size,HowManySteps);
                         break;
                     }
                 }
@@ -150,4 +157,6 @@ int main()
         }
         count += 1;
     }
+    
+    JourneyMetrics(MatrixCounting, GlobalSum);
 }

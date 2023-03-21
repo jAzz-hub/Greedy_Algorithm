@@ -51,7 +51,9 @@ void CoordinateDefinition(unsigned short int *i,unsigned short int *j);
 
 unsigned short int* RoadMapDefiner(vector<unsigned short int> Steps,unsigned short int HowManySteps);
 
-void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsigned short int HowManySteps, MatrixElement *FinalMatrix,unsigned short int size);
+void MapOfTheJourney(unsigned short int *iRoute,unsigned short int *jRoute,unsigned short int size, unsigned short int NumberOfSteps);
+
+void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsigned short int HowManySteps, MatrixElement *FinalMatrix,unsigned short int size, unsigned int *GlobalSum);
 
 void CreatingCoordinates(unsigned short int size,unsigned short int i,unsigned short int j, bool *S, bool *SE, bool *SW, bool *W, bool *E);
 
@@ -60,6 +62,9 @@ void FivePossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned
 void SouthEastPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size, unsigned short int *IndexHigher, unsigned short *lasti, unsigned short *lastj);
 
 void SouthWestPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size, unsigned short int *IndexHigher, unsigned short *lasti, unsigned short *lastj);
+
+void JourneyMetrics(unsigned short int ReadedMatrixes, unsigned short int GlobalSum);
+
 
 #endif
 
