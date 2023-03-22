@@ -38,10 +38,8 @@ Este repositório apresenta a solução implementada para um desafio da discipli
 
 #### Exemplo de uma matriz $M$ de ordem $N$, para $N=2$ qualquer com a linguagem estabelecida acima:
 
-$M =\begin{bmatrix}
-a_{00} & a_{0 1} \\
-a_{10} & a_{11}
-\end{bmatrix}$
+$M = \begin{bmatrix}a_{00} & a_{0 1} \\a_{10} & a_{11}\end{bmatrix}$
+
 
 ## Objetivo
 A problemática proposta incita os alunos da disciplina a desenvolverem um programa que leia $K$ matrizes de ordem $N$. Considerando essa proposição algumas exigências de desenvolvimento solicitadas foram:
