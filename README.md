@@ -38,7 +38,7 @@ Este repositório apresenta a solução implementada para um desafio da discipli
 
 #### Exemplo de uma matriz $M$ de ordem $N$, para $N=2$ qualquer com a linguagem estabelecida acima:
 
-- $ M =\begin{bmatrix}
+- $M =\begin{bmatrix}
 a_{00} & a_{0 1} \\
 a_{10} & a_{11}
 \end{bmatrix}$
