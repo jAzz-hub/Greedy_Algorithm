@@ -27,26 +27,53 @@
 </div>
 
 
+## Introdução
+Este repositório apresenta a solução implementada para um desafio da disciplina de Algoritmos e Estruturas de Dados. Há com isso o propósito de testar a implementação de um algoritmo guloso que faça pesquisa em uma matriz. Para melhor entendimento deste trabalho, considere as sentenças à seguir:
+- $N$ - Ordem de uma matriz tal que $N \in \mathbb{Z}$ e $N\geq 0$.
+- $i$ - Índice de uma linha que pertence à uma matriz específica, também pode ser abstraído como deslocamento na vertical, tal que $i \geq 0$ e $i \in \mathbb{Z}$.
+
+- $j$ - Índice de uma coluna que pertence à uma matriz específica, também pode ser abstraído como deslocamento na horizontal, tal que $j \geq 0$ e $j \in \mathbb{Z}$.
+
+- $a_{ij}$ - Elemento encontrado quando há deslocamento até a linha de índice $i$ e coluna de índice $j$. 
+
+#### Exemplo de uma matriz $M$ de ordem $N$, para $N=2$ qualquer com a linguagem estabelecida acima:
+
+- $ M =\begin{bmatrix}
+a_{00} & a_{0 1} \\
+a_{10} & a_{11}
+\end{bmatrix}$
+
 ## Objetivo
-Este repositório apresenta a solução implementada para o desafio proposto na disciplina de Algoritmos e Estruturas de Dados. O problema proposto foi que houvesse um algoritmo que realizasse uma pesquisa e armazenamento de valores contidos em  uma matriz de maneira gulosa.
+A problemática proposta incita os alunos da disciplina a desenvolverem um programa que leia $K$ matrizes de ordem $N$. Considerando essa proposição algumas exigências de desenvolvimento solicitadas foram:
 
-### Desafio
-Um programa que leia $K$ matrizes $N$ x $N$, tal que $N \in \mathbb{Z}$ e $N\geq 0$.
+- As matrizes deverão estar préviamente organizadas para processamento.
+- A pesquisa ou percorrimento na matriz iniciará à partir da entrada de dados do usuário ou de um arquivo. Esta entrada é o ponto de onde caminhada ou pesquisa pela matriz se inicia.
 
-1. Organização de matrizes para processamento.
-2. Iniciar a busca de um conjunto de coordenadas em linhas e colunas, sendo essa coordenada pertencente à matriz. Vale ressaltar que a coordenada será estabelecida pelo usuário, ou concebida através da leitura de uma arquivo.
-3. São direções válidas para caminhamento:
+- Os movimentos válidos para deslocamento pela matriz são listados à seguir e visualizados de azul na Figura 1, considerando o ponto de partida atual sendo o elemento colorido de laranja:
     
-    3.1. Avançar para a próxima coluna.
+    - Avançar para a próxima coluna, ou seja deslocar-se para $i = $ .
     
-    3.2. Retroceder para a coluna anterior.
+    - Retroceder a coluna anterior.
     
-    3.3. Saltar para a linha de baixo.
+    - Avançar para a linha de baixo.
     
-    3.4. Ir em diagonal para baixo.
-4. A direção de escolha deve contem o maior valor adjascente dentre as direções possíveis.
-5. Caso haja um valor em comum entre as direções de maior valor, é  necessário que uma regra de caminhamento seja estabelecida. E que esta enquanto padrão seja a melhor decisão de caminhamento.
-6. Ao ter como posição atual o elemento de uma matriz posicionado na última linha e coluna simultâneamente, ou seja o elemento na coordenada de maior valor de maior $i$ e $j$, tais que, $i,j \in$ onde $  0 \leq i\leq N$ e $0 \leq j \leq N$.
+    - Avançar em diagonal esquerda, ou direita para baixo.
+
+<div align="center">
+<strong>Figura 1</strong> - Movimentos possíveis    
+<br>
+<img src="./img/Imagem1.png" width="35%">
+<br>
+Fonte: Construção pelo autor¹.
+<br>
+____________________________________________
+<br>¹Criada em planilha do Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+</div>
+<br>
+
+- Os movimentos devem ser realizados em direção às casas adjascentes de maior valor possível. No caso da Figura 1 essa opção representa o elemento em $i=1$ e $j=4$, portanto o próximo movimento se desloca até $a_{14}$.
+- Caso haja um valor em comum entre as direções de maior valor, é  necessário que uma regra de caminhamento seja estabelecida. E que esta enquanto padrão seja a melhor decisão de caminhamento.
+- Ao ter como posição atual o elemento de uma matriz posicionado na última linha e coluna simultâneamente, ou seja o elemento na coordenada de maior valor referente a $i$ e $j$, tais que, $i,j \in \mathbb{Z}$ onde $  0 \leq i\leq N$ e $0 \leq j \leq N$, considera-se que a matriz foi percorrida até o final com isso o programa recebe uma nova entrada referênte ao ponto inicial de caminhada para a próxima matriz. Caso o programa tenha lido a última matriz, isso não acontece.
 
 <!--Prioridade alta-->
 ### Solução
