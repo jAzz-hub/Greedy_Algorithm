@@ -20,7 +20,7 @@ unsigned short int SizeRecon()
 {
     unsigned short int ArrayArea = 0;
     FILE *LocalPointer;
-    LocalPointer = fopen("input.data", "r");
+    LocalPointer = fopen("./dataset/input.data", "r");
     fscanf(LocalPointer, "%hu", &ArrayArea);
     fclose(LocalPointer);
     return ArrayArea;

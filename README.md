@@ -34,7 +34,11 @@ Este repositório apresenta a solução implementada para um desafio da discipli
 
 - $j$ - Índice de uma coluna que pertence à uma matriz específica, também pode ser abstraído como deslocamento na horizontal, tal que $j \geq 0$ e $j \in \mathbb{Z}$.
 
-- $a_{ij}$ - Elemento encontrado quando há deslocamento até a linha de índice $i$ e coluna de índice $j$. 
+- $a_{ij}$ - Elemento encontrado quando há deslocamento até a linha de índice $i$ e coluna de índice $j$.
+
+- Nomes de diretórios, ou arquivos serão referênciados da seguinte forma: `Nome.txt` ou `Diretório_2`.
+
+- Nomes de comandos digitados no terminal, serão referênciados da seguinte forma: _**touch main.cpp**_ ou _**make run**_.
 
 
 ## Objetivo
@@ -70,16 +74,34 @@ ____________________________________________
 - Ao ter como posição atual o elemento de uma matriz posicionado na última linha e coluna simultâneamente, ou seja o elemento na coordenada de maior valor referente a $i$ e $j$, tais que, $i,j \in \mathbb{Z}$ onde $  0 \leq i\leq N$ e $0 \leq j \leq N$, considera-se que a matriz foi percorrida até o final com isso o programa recebe uma nova entrada referênte ao ponto inicial de caminhada para a próxima matriz. Caso o programa tenha lido a última matriz, isso não acontece.
 
 <!--Prioridade alta-->
-### Solução
+## Desenvolvimento
+### Arquivos e Diretórios
+#### Diretórios
+O projeto foi desenvolvido em um diretório Greedy_Algorithm, este contem 4 subdiretórios, são estes:
+- `dataset` : Armazena arquivos com dados de entrada à serem processados, como por exemplo `input.data`.
+- `src` : Contém a modularização do código fonte que processa os dados de entrada.
+- `build` : Diretório que armazena arquivos gerados pela execução do arquivo `Makefile`.
+- `img` : Contém as imagens deste repositório.
 
-### Imagens e exemplos de implementação:
-//Usando uma matriz de exemplo com latex
-$\begin{bmatrix}
-1 & 0 & 0 & 0\\
-0 & 2 & 0 & 0\\
-0 & 0 & \ddots & 0\\
-0 & 0 & 0 & n
-\end{bmatrix}$
+#### Arquivos
+Os arquivos para funcionamento do projeto são:
+- `input.data` : Um arquivo que armazena na sua primeira linha a ordem das matrizes que estão dispostas nas linhas subsequentes.
+<div align="center">
+<strong>Figura 2</strong> - input.data    
+<br>
+<img src="./img/Imagem2.png" width="35%">
+<br>
+Fonte: Captura de tel feita pelo autor².
+<br>
+____________________________________________
+<br>²Captura de tela do computador do autor. Disponível em: <a href="./img/Imagem2.png">Planilha</a>.
+</div>
+<br>
+
+
+- `dataset` : Armazena arquivos com dados de entrada à serem processados, como por exemplo `input.data`.
+- `img` : Contém as imagens deste repositório.
+- `src` : Contém a modularização do código fonte que processa os dados de entrada.
 
 
 
@@ -118,15 +140,16 @@ Para compilação e execução do código é necessário que seja criado um arqu
 </tr>
 
 <tr>
-<td align="center">make clean</td>
+<td align="center"><strong><i>make clean</i></strong>
+</td>
 <td align="center">Deleta o arquivo executável e todos os arquivos objetos do diretório. (GNU make, 2023)</td>
 </tr>
 <tr>
-<td align="center">make</td>
+<td align="center"><strong><i>make</i></strong></td>
 <td align="center">Compila diferentes partes do programa através do g++ e cria um arquivo executável na pasta build. </td>
 </tr>
 <tr>
-<td align="center">make run </td>
+<td align="center"><strong><i>make run</i></strong></td>
 <td align="center">Executa o programa da pasta build após a realização da compilação. (Michel Pires, 2023)</td>
 </tr>
 </table>

@@ -35,7 +35,7 @@ int main()
     unsigned short int MatrixLines = 0;
     unsigned short int MatrixColumns = 0;
     unsigned short int MatrixCounting = 0;
-    ifstream File("input.data");
+    ifstream File("./dataset/input.data");
     unsigned int GlobalSum = 0;
 
     // Percorrendo arquivo linha por linha e armazenando em Line:
