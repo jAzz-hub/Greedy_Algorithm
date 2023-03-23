@@ -89,6 +89,7 @@ int main()
 
                     else if(S && SE && E && !W && !SW) //Possibilidade de ir para Sul, Sudeste ou Leste:
                     {    
+
                         SouthEastPossibleWays((MatrixElement *)FinalMatrix,&i,&j,size,&IndexHigher,&lasti,&lastj);
                         StepsOni.push_back(i);
                         StepsOnj.push_back(j);

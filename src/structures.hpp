@@ -63,7 +63,7 @@ void SouthEastPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,uns
 
 void SouthWestPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size, unsigned short int *IndexHigher, unsigned short *lasti, unsigned short *lastj);
 
-void JourneyMetrics(unsigned short int ReadedMatrixes, unsigned short int GlobalSum);
+void JourneyMetrics(unsigned short int ReadedMatrixes, unsigned int GlobalSum);
 
 
 #endif

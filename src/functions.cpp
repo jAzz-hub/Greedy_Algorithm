@@ -61,15 +61,14 @@ unsigned short int* RoadMapDefiner(vector<unsigned short int> Steps,unsigned sho
 {
 
     unsigned short int Counter=0;
-    unsigned short int *Route = (unsigned short int*)malloc(sizeof(unsigned short int)*HowManySteps);
-
+    unsigned short int *Route = (unsigned short int*)malloc(sizeof(unsigned short int)*(HowManySteps+10));
 
     for(auto index=Steps.begin();index!=Steps.end();index++)
     {
         Route[Counter] = *index;
         Counter+=1;
     }
-
+    
     return Route;
 }
 
@@ -110,6 +109,7 @@ void MapOfTheJourney(unsigned short int *iRoute,unsigned short int *jRoute,unsig
         {
             if(idxj==0)
                 cout<<BinaryMatrix[idxi][idxj];
+                
             
             else
                 cout<<"\t"<<BinaryMatrix[idxi][idxj];
@@ -126,6 +126,7 @@ void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsign
     cout<<"   Passos         [i]   [j]   [Valor]"<<"\n";
     cout<<"-----------------------------------------\n";
 
+
     for(unsigned short int index=0;index<HowManySteps;index++)
     {
         cout<<index<<"º passo";
@@ -137,7 +138,7 @@ void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsign
     cout<<"A soma local foi:\t"<<LocalSumOfSteps<<"\n\n";
 
     *GlobalSum+=LocalSumOfSteps;
-
+    
 }
 
 void CreatingCoordinates(unsigned short int size,unsigned short int i,unsigned short int j, bool *S, bool *SE, bool *SW, bool *W, bool *E)
@@ -266,7 +267,7 @@ void SouthWestPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,uns
     *j = Possiblej[*IndexHigher];
 }
 
-void JourneyMetrics(unsigned short int ReadedMatrixes, unsigned short int GlobalSum)
+void JourneyMetrics(unsigned short int ReadedMatrixes, unsigned int GlobalSum)
 {
     //Ideia de implementação:
         // [ ] - Mostrar a média de passos dados por matriz.

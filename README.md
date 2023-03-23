@@ -67,7 +67,7 @@ A problemática proposta incita os alunos da disciplina a desenvolverem um progr
 Fonte: Construção pelo autor¹.
 <br>
 ____________________________________________
-<br>¹Criada em planilha do Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+<br>¹Criada usando o Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
 </div>
 <br>
 
@@ -76,7 +76,8 @@ ____________________________________________
 - Ao ter como posição atual o elemento de uma matriz posicionado na última linha e coluna simultâneamente, ou seja o elemento na coordenada de maior valor referente a $i$ e $j$, tais que, $i,j \in \mathbb{Z}$ onde $  0 \leq i\leq N$ e $0 \leq j \leq N$, considera-se que a matriz foi percorrida até o final com isso o programa recebe uma nova entrada referênte ao ponto inicial de caminhada para a próxima matriz. Caso o programa tenha lido a última matriz, isso não acontece.
 <br><br>
 <!--Prioridade alta-->
-#### Arquivos
+## Solução
+### Arquivos
 Os arquivos para funcionamento do projeto são:
 - `input.data` : Um arquivo que armazena na sua primeira linha a ordem das matrizes que estão dispostas nas linhas subsequentes.
 <div align="center">
@@ -97,7 +98,7 @@ ____________________________________________
 - `structures.hpp` : Contém as estruturas e chamadas de bibliotecas utilizadas no programa.
 - `main.cpp` : Contém uma série de funções e declaração de variáveis que façam com que a busca pela matriz seja realizada devidamente.
 <br><br>
-### Solução
+### Funcionamento
 #### 1. Primeira Leitura do Arquivo
  A leitura das entradas do arquivo `input.data` são realizadas em 2 etapas, na primeira etapa é executada a função _**SizeRecon**_.
 
@@ -106,29 +107,84 @@ ____________________________________________
 #### 2. Segunda Leitura do Arquivo.
 Com $N$ armazenada na variável _**size**_ o código, uma estrutura de tamanho $N$ do tipo _**MatrixElement**_ denominada _**FinalMatrix**_ é criada para que os valores do arquivo `input.data` sejam alocados em uma variável. A estrutura do tipo _**MatrixElement**_ nesse caso será uma matriz com variávies do tipo unsigned short int como elementos $a_{ij}$.
 
-Para a leitura das $K$ matrizes um laço percorre o arquivo armazenando cada elemento identificado em uma posição da estrutura _**FinalMatrix**_, essa mesma estrutura é reiniciada assim que: _**MatrixLines**_=$N-1$. Considerando que _**MatrixLines**_ é uma variável criada para armazenar o número de linhas preenchidas com entradas do arquivo.
+Para a leitura das $K$ matrizes um laço percorre o arquivo armazenando cada elemento identificado em uma posição da estrutura _**FinalMatrix**_, essa mesma estrutura é reiniciada assim que: _**MatrixLines**_  =  $N-1$ . Considerando que _**MatrixLines**_ é uma variável criada para armazenar o número de linhas preenchidas com entradas do arquivo.
 
 
  
 #### 3. Percorrendo a Matriz:
+
+#### 3.1. Localização inicial
 Diante do que foi narrado, o programa recebe do usuário as coordenadas de $i$ e $j$ para inicializar a pesquisa através da martriz partindo do elemento $a_{ij}$. A entrada de i e j é requisitada através de _**CoordinateDefinition**_.
 
-O programa usa o elemento inicial $a_{ij}$ como referência e analisa as casas adjascentes verificando primeiramente se elas são espaços na memória que estão dentro da matriz. Esse procedimento ocorre através da criação de variáveis booleanas, cada uma dessas variáveis armazenam hipóteses que podem ser verdadeiras ou falsas. Caso a hipótese seja verdadeiras a posição observada representa um movimento possível(Espaço da memória alocado pela estrutura), se esta for falsa o movimento é desconsiderado(Pode-se concluir que aquele espaço não foi alocado pela estrutura). As variáveis booleanas tem os nomes de pontos cardeais em inglês, são elas _**W**_,_**SW**_,_**S**_,_**SE**_,_**E**_.
 
-Considerando a verificação para deslocamento proposta, a **Figura 1** pode ser abstraída da seguinte forma:
+#### 3.2. Direções possíveis
+O programa usa $a_{ij}$ como posição em que está no presente, ele verifica a resposta para a seguinte pergunta:
+- As posições adjascentes correspondem à espaços da memória alocados pela matriz?
+
+A validação citada ocorre através do seguinte modo:
+
+- Criação de hipóteses dentro de variáveis booleanas,sendo o resultádo dessas variáveis é dependente da posição atual.As variáveis booleanas criadas tem os nomes de pontos cardeais em inglês, são elas _**W**_,_**SW**_,_**S**_,_**SE**_,_**E**_ e podem ser verdadeiras ou falsas de maneiras diferentes tornando diversos caminhos possíveis. 
+
+Por fim pode-se abstrair a situação acima nas seguintes ilustrações, considerando que o elemento de cor laranja é o local atual:
 
 <div align="center">
-<strong>Figura 3</strong> - input.data    
+<strong>Figura 3</strong> - 5 possíveis caminhos    
 <br>
 <img src="./img/Imagem3.png" width="35%">
 <br>
 Fonte: Construção pelo autor³.
 <br>
 ____________________________________________
-<br>³Criada em planilha do Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+<br>³Criada usando o Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
 </div>
 <br>
-#### 4.
+
+#### 3.3. A melhor direção local:
+Após analisar as hipóteses, a decisão de qual é o melhor caminho a seguir é feita considerando o $a_{ij}$ de maior valor, enquanto esta posição de maior valor seja diferente da última posição. Isso significa que em nenhum momento o próximo passo pode se o passo anterior, afinal isso faria com que duas casas próximas com o maior valor possível fossem as únicas escolhidas.
+
+Para buscar a maior direção válida, o programa decide quais são os pontos cardeais válidos, à depender disso ele executa uma das seguintes funções possíveis:
+
+- _**FivePossibleWays**_: Verifica qual o maior dentre 5 elementos, tendo uma posição de coordenadas $i$ e $j$ diferentes da posição passada. Exemplo na **Figura 4**.
+
+<div align="center">
+<strong>Figura 4</strong> - Maior valor entre 5
+<br>
+<img src="./img/Imagem4.png" width="35%">
+<br>
+Fonte: Construção pelo autor⁴.
+<br>
+____________________________________________
+<br>⁴Criada usando o Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+</div>
+<br>
+
+- _**SouthEastPossibleWays**_: Verifica qual o maior dentre 3 elementos, tendo uma posição de coordenadas $i$ e $j$ diferentes da posição passada. Estes elementos estão ao Sul, Leste ou Sudeste do $a_{ij}$ atual. Exemplo na **Figura 5**.
+
+<div align="center">
+<strong>Figura 5</strong> - 3 possíveis caminhos para Sul e Leste.     
+<br>
+<img src="./img/Imagem5.png" width="35%">
+<br>
+Fonte: Construção pelo autor⁵.
+<br>
+____________________________________________
+<br>⁵Criada usando o Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+</div>
+<br>
+
+- _**SouthWestPossibleWays**_: Verifica qual o maior dentre 3 elementos, tendo uma posição de coordenadas $i$ e $j$ diferentes da posição passada. Estes elementos estão ao Sul, Oeste ou Sudoeste do $a_{ij}$ atual. Exemplo na **Figura 6**.
+<div align="center">
+<strong>Figura 6</strong> - 3 possíveis caminhos para Sul e Oeste.    
+<br>
+<img src="./img/Imagem6.png" width="35%">
+<br>
+Fonte: Construção pelo autor⁶.
+<br>
+____________________________________________
+<br>⁶Criada usando o Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+</div>
+<br>
+
 
 
 ## Reflexões e Aprendizados
