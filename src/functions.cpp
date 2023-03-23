@@ -15,7 +15,7 @@ unsigned short int RandomGenerator(unsigned short int a, unsigned short int b)
     return dis(gen);
 }
 
-
+//Lê a primeira linha do arquivo de entrada e retorna o tamanho das matrizes armazenadas nele:
 unsigned short int SizeRecon()
 {
     unsigned short int ArrayArea = 0;
@@ -46,6 +46,7 @@ void MatrixScanner(unsigned short int size,MatrixElement *Matrix)
     cout<<"\n\n\n";
 }
 
+//Pede para que o usuário declare uma coordenada para início da busca na matriz:
 void CoordinateDefinition(unsigned short int *i,unsigned short int *j)
 {
     cout<<"Insert a line (i): ";

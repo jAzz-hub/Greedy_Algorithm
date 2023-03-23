@@ -26,10 +26,13 @@
 
 </div>
 
-
+<br><br>
 ## Introdução
 Este repositório apresenta a solução implementada para um desafio da disciplina de Algoritmos e Estruturas de Dados. Há com isso o propósito de testar a implementação de um algoritmo guloso que faça pesquisa em uma matriz. Para melhor entendimento deste trabalho, considere as sentenças à seguir:
+- $K$ - Número de matrizes de entrada.
+
 - $N$ - Ordem de uma matriz tal que $N \in \mathbb{Z}$ e $N\geq 0$.
+
 - $i$ - Índice de uma linha que pertence à uma matriz específica, também pode ser abstraído como deslocamento na vertical, tal que $i \geq 0$ e $i \in \mathbb{Z}$.
 
 - $j$ - Índice de uma coluna que pertence à uma matriz específica, também pode ser abstraído como deslocamento na horizontal, tal que $j \geq 0$ e $j \in \mathbb{Z}$.
@@ -38,9 +41,8 @@ Este repositório apresenta a solução implementada para um desafio da discipli
 
 - Nomes de diretórios, ou arquivos serão referênciados da seguinte forma: `Nome.txt` ou `Diretório_2`.
 
-- Nomes de comandos digitados no terminal, serão referênciados da seguinte forma: _**touch main.cpp**_ ou _**make run**_.
-
-
+- Nomes de comandos digitados no terminal,funções ou variáveis serão referênciados da seguinte forma: _**touch main.cpp**_, _**make run**_, __**ShowResults()**__, __**variableA**__.
+<br><br>
 ## Objetivo
 A problemática proposta incita os alunos da disciplina a desenvolverem um programa que leia $K$ matrizes de ordem $N$. Considerando essa proposição algumas exigências de desenvolvimento solicitadas foram:
 
@@ -72,17 +74,8 @@ ____________________________________________
 - Os movimentos devem ser realizados em direção às casas adjascentes de maior valor possível. No caso da Figura 1 essa opção representa o elemento em $i=1$ e $j=4$, portanto o próximo movimento se desloca até $a_{14}$.
 - Caso haja um valor em comum entre as direções de maior valor, é  necessário que uma regra de caminhamento seja estabelecida. E que esta enquanto padrão seja a melhor decisão de caminhamento.
 - Ao ter como posição atual o elemento de uma matriz posicionado na última linha e coluna simultâneamente, ou seja o elemento na coordenada de maior valor referente a $i$ e $j$, tais que, $i,j \in \mathbb{Z}$ onde $  0 \leq i\leq N$ e $0 \leq j \leq N$, considera-se que a matriz foi percorrida até o final com isso o programa recebe uma nova entrada referênte ao ponto inicial de caminhada para a próxima matriz. Caso o programa tenha lido a última matriz, isso não acontece.
-
+<br><br>
 <!--Prioridade alta-->
-## Desenvolvimento
-### Arquivos e Diretórios
-#### Diretórios
-O projeto foi desenvolvido em um diretório Greedy_Algorithm, este contem 4 subdiretórios, são estes:
-- `dataset` : Armazena arquivos com dados de entrada à serem processados, como por exemplo `input.data`.
-- `src` : Contém a modularização do código fonte que processa os dados de entrada.
-- `build` : Diretório que armazena arquivos gerados pela execução do arquivo `Makefile`.
-- `img` : Contém as imagens deste repositório.
-
 #### Arquivos
 Os arquivos para funcionamento do projeto são:
 - `input.data` : Um arquivo que armazena na sua primeira linha a ordem das matrizes que estão dispostas nas linhas subsequentes.
@@ -94,15 +87,48 @@ Os arquivos para funcionamento do projeto são:
 Fonte: Captura de tel feita pelo autor².
 <br>
 ____________________________________________
-<br>²Captura de tela do computador do autor. Disponível em: <a href="./img/Imagem2.png">Planilha</a>.
+<br>²Captura de tela do computador do autor. Disponível em: <a href="https://github.com/jAzz-hub/Greedy_Algorithm/blob/main/img/Imagem2.png">Imagem 2</a>.
 </div>
 <br>
 
 
-- `dataset` : Armazena arquivos com dados de entrada à serem processados, como por exemplo `input.data`.
-- `img` : Contém as imagens deste repositório.
-- `src` : Contém a modularização do código fonte que processa os dados de entrada.
+- `Makefile` : Controla a geração dos executáveis e compilação dos mesmos(FREE SOFTWARE FOUNDATION, GNU make, 2023).
+- `functions.cpp` : Contém as funções criadas para execução no `main.cpp`.
+- `structures.hpp` : Contém as estruturas e chamadas de bibliotecas utilizadas no programa.
+- `main.cpp` : Contém uma série de funções e declaração de variáveis que façam com que a busca pela matriz seja realizada devidamente.
+<br><br>
+### Solução
+#### 1. Primeira Leitura do Arquivo
+ A leitura das entradas do arquivo `input.data` são realizadas em 2 etapas, na primeira etapa é executada a função _**SizeRecon**_.
 
+ A função SizeRecon é responsável por ler a primeira linha do arquivo de entrada e retornar à alguma variável o valor de $N$, este valor serve para todas as $K$ matrizes contidas no arquivo `input.data`.
+
+#### 2. Segunda Leitura do Arquivo.
+Com $N$ armazenada na variável _**size**_ o código, uma estrutura de tamanho $N$ do tipo _**MatrixElement**_ denominada _**FinalMatrix**_ é criada para que os valores do arquivo `input.data` sejam alocados em uma variável. A estrutura do tipo _**MatrixElement**_ nesse caso será uma matriz com variávies do tipo unsigned short int como elementos $a_{ij}$.
+
+Para a leitura das $K$ matrizes um laço percorre o arquivo armazenando cada elemento identificado em uma posição da estrutura _**FinalMatrix**_, essa mesma estrutura é reiniciada assim que: _**MatrixLines**_=$N-1$. Considerando que _**MatrixLines**_ é uma variável criada para armazenar o número de linhas preenchidas com entradas do arquivo.
+
+
+ 
+#### 3. Percorrendo a Matriz:
+Diante do que foi narrado, o programa recebe do usuário as coordenadas de $i$ e $j$ para inicializar a pesquisa através da martriz partindo do elemento $a_{ij}$. A entrada de i e j é requisitada através de _**CoordinateDefinition**_.
+
+O programa usa o elemento inicial $a_{ij}$ como referência e analisa as casas adjascentes verificando primeiramente se elas são espaços na memória que estão dentro da matriz. Esse procedimento ocorre através da criação de variáveis booleanas, cada uma dessas variáveis armazenam hipóteses que podem ser verdadeiras ou falsas. Caso a hipótese seja verdadeiras a posição observada representa um movimento possível(Espaço da memória alocado pela estrutura), se esta for falsa o movimento é desconsiderado(Pode-se concluir que aquele espaço não foi alocado pela estrutura). As variáveis booleanas tem os nomes de pontos cardeais em inglês, são elas _**W**_,_**SW**_,_**S**_,_**SE**_,_**E**_.
+
+Considerando a verificação para deslocamento proposta, a **Figura 1** pode ser abstraída da seguinte forma:
+
+<div align="center">
+<strong>Figura 3</strong> - input.data    
+<br>
+<img src="./img/Imagem3.png" width="35%">
+<br>
+Fonte: Construção pelo autor³.
+<br>
+____________________________________________
+<br>³Criada em planilha do Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+</div>
+<br>
+#### 4.
 
 
 ## Reflexões e Aprendizados
@@ -128,7 +154,7 @@ Considerando isso, são propostos por Cormen(2012) os Elementos da Estratégia G
 </p>
 
 <!--Prioridade baixa-->## Bibliotecas
-
+<br><br>
 ## Compilação e Execução
 Para compilação e execução do código é necessário que seja criado um arquivo Makefile. Para uso deste arquivo da forma correta, siga as diretrizes de execução abaixo:
 
@@ -142,7 +168,7 @@ Para compilação e execução do código é necessário que seja criado um arqu
 <tr>
 <td align="center"><strong><i>make clean</i></strong>
 </td>
-<td align="center">Deleta o arquivo executável e todos os arquivos objetos do diretório. (GNU make, 2023)</td>
+<td align="center">Deleta o arquivo executável e todos os arquivos objetos do diretório. (FREE SOFTWARE FOUNDATION, GNU make, 2023)</td>
 </tr>
 <tr>
 <td align="center"><strong><i>make</i></strong></td>
@@ -150,18 +176,22 @@ Para compilação e execução do código é necessário que seja criado um arqu
 </tr>
 <tr>
 <td align="center"><strong><i>make run</i></strong></td>
-<td align="center">Executa o programa da pasta build após a realização da compilação. (Michel Pires, 2023)</td>
+<td align="center">Executa o programa da pasta build após a realização da compilação. (PIRES, MICHEL, 2023)</td>
 </tr>
 </table>
 
+<br><br>
 ## Referências <!--Idea!! CITAR O NÍVIO ZIVIANI-->
 
 [1] CORMEN, T. H. et al. Introduction to Algorithms, third edition. [s.l.] MIT Press, 2009. Acessador em 20 de Março de 2023.
 
-[2] Michel Pires - Repositório GitHub, @mpiress: GenerateDataToMatrix - Disponível em: https://github.com/mpiress/GenerateDataToMatrix/blob/main/src/mat.h. Acessado em 15 de Março de 2023.
+[2] PIRES, MICHEL - Repositório GitHub, @mpiress: GenerateDataToMatrix - Disponível em: https://github.com/mpiress/GenerateDataToMatrix/blob/main/src/mat.h. Acessado em 15 de Março de 2023.
 
 [3] GNU make. Disponível em: <https://www.gnu.org/software/make/manual/make.html>. Acessado em 21 de Março de 2023.
 
+[4] GNU Make. Disponível em: <https://www.gnu.org/software/make/>. Acesso em: mar. 23DC.
+
+‌
 ‌
 ## Contato
 
