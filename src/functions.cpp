@@ -6,16 +6,20 @@
 using namespace std;
 
 
-// Gera valores realmente aleatórios
-unsigned short int RandomGenerator(unsigned short int a, unsigned short int b)
+/// @brief GEra um número aleatório entre 2 valores
+/// @param Higher Maior valor possível gerado
+/// @param Lower Menor valor possível gerdao
+/// @return Valor aleatório entre Higher e Lower
+unsigned short int RandomGenerator(unsigned short int Higher, unsigned short int Lower)
 {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> dis(a, b);
+    uniform_int_distribution<> dis(Higher, Lower);
     return dis(gen);
 }
 
-//Lê a primeira linha do arquivo de entrada e retorna o tamanho das matrizes armazenadas nele:
+/// @brief Lê a primeira linha do arquivo input.data e retorna uma variável que representa o tamanho das matrizes contidas nesse arquivo
+/// @return O tamanho das matrizes à serem lidas
 unsigned short int SizeRecon()
 {
     unsigned short int ArrayArea = 0;
@@ -26,13 +30,11 @@ unsigned short int SizeRecon()
     return ArrayArea;
 }
 
+/// @brief Lê uma matriz passada como argumento do tamanho passado por argumento
+/// @param size 
+/// @param Matrix 
 void MatrixScanner(unsigned short int size,MatrixElement *Matrix)
 {
-    /*
-        Runs throuth a square "*Matrix" showing their values as they were placed on a matrix.
-            unsigned short int size = The order of matrix.
-            MatrixElement *Matrix = A matrix which someone deserve to see. 
-    */
     unsigned short int i,j;
     for(i=0;i<size;i++)
     {
@@ -46,7 +48,9 @@ void MatrixScanner(unsigned short int size,MatrixElement *Matrix)
     cout<<"\n\n\n";
 }
 
-//Pede para que o usuário declare uma coordenada para início da busca na matriz:
+/// @brief //Pede para que o usuário declare duas cordenadas que são armazenadas em i e j
+/// @param i Coordenada de deslocamento em linhas sendo 0 o menor valor possível
+/// @param j Coordenada de deslocamento em colunas sendo 0 o menor valor possível
 void CoordinateDefinition(unsigned short int *i,unsigned short int *j)
 {
     cout<<"Insert a line (i): ";
@@ -57,9 +61,12 @@ void CoordinateDefinition(unsigned short int *i,unsigned short int *j)
     cout<<"\n";
 }
 
+/// @brief //Recebe um vector com valores dos passos dados e retorna um vetor de memória alocada com base no tamanho do vector, contendo os passos do vector:
+/// @param Steps Vector que contem coordenadas em i ou em j dos passos realizados
+/// @param HowManySteps Número de passos dados na busca realizada em uma matriz
+/// @return Um vetor com as mesmas variáveis do vector
 unsigned short int* RoadMapDefiner(vector<unsigned short int> Steps,unsigned short int HowManySteps)
 {
-
     unsigned short int Counter=0;
     unsigned short int *Route = (unsigned short int*)malloc(sizeof(unsigned short int)*(HowManySteps+10));
 
@@ -72,7 +79,12 @@ unsigned short int* RoadMapDefiner(vector<unsigned short int> Steps,unsigned sho
     return Route;
 }
 
-void MapOfTheJourney(unsigned short int *iRoute,unsigned short int *jRoute,unsigned short int size, unsigned short int NumberOfSteps)
+/// @brief Mostra a ordem e local dos passos realizados por uma busca em uma matriz:
+/// @param iRoute Um vetor com coordenadas de deslocamento em i
+/// @param jRoute Um vetor com coordenadas de deslocamento j
+/// @param size Tamanho da matriz onde a busca foi feita
+/// @param HowManySteps Número de passos dados na busca realizada em uma matriz
+void MapOfTheJourney(unsigned short int *iRoute,unsigned short int *jRoute,unsigned short int size, unsigned short int HowManySteps)
 {
    unsigned short int BinaryMatrix[size][size];
     
@@ -84,7 +96,7 @@ void MapOfTheJourney(unsigned short int *iRoute,unsigned short int *jRoute,unsig
         } 
     }
 
-    for(int index = 0;index<NumberOfSteps;index++)
+    for(int index = 0;index<HowManySteps;index++)
     {
         unsigned short int i = iRoute[index];
         unsigned short int j = jRoute[index];
@@ -118,6 +130,13 @@ void MapOfTheJourney(unsigned short int *iRoute,unsigned short int *jRoute,unsig
     }
 }
 
+/// @brief Mostra os passos da busca local com suas coordenadas e valores e adiciona os dados locais à uma variável de soma global:
+/// @param iRoute Um vetor com coordenadas de deslocamento em i
+/// @param jRoute Um vetor com coordenadas de deslocamento j
+/// @param FinalMatrix Matriz onde a busca está sendo realizada
+/// @param HowManySteps Número de passos dados na busca em FinalMatrix
+/// @param size Tamanho da matriz
+/// @param GlobalSum Soma de todos os valores encontrados na busca realizada em FinalMatrix
 void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsigned short int HowManySteps, MatrixElement *FinalMatrix,unsigned short int size, unsigned int *GlobalSum)
 {
     unsigned short int LocalSumOfSteps = 0;
@@ -138,9 +157,17 @@ void RoadMapViewer(unsigned short int *iRoute,unsigned short int *jRoute, unsign
     cout<<"A soma local foi:\t"<<LocalSumOfSteps<<"\n\n";
 
     *GlobalSum+=LocalSumOfSteps;
-    
 }
 
+/// @brief 
+/// @param size tamanho da matriz pesquisada
+/// @param i distância em relaçao ao deslocamneto em linhas
+/// @param j distância em relação ao deslocamento por colunas
+/// @param S hipótese que verifica se um movimento para baixo é valido na matriz
+/// @param SE hipótese que verifica se um movimento para baixo na diagonal direita da matriz é valido
+/// @param SW hipótese que verifica se um movimento para baixo na diagonal esquerda da matriz é valido
+/// @param W hipótese que verifica se um movimento para a esquerda na matriz é valido
+/// @param E hipótese que verifica se um movimento para a direita na matriz é valido
 void CreatingCoordinates(unsigned short int size,unsigned short int i,unsigned short int j, bool *S, bool *SE, bool *SW, bool *W, bool *E)
 {
     unsigned short int Limit = size-1;
@@ -153,9 +180,17 @@ void CreatingCoordinates(unsigned short int size,unsigned short int i,unsigned s
 
 }
 
-void FivePossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size, unsigned short int *IndexHigher, unsigned short *lasti, unsigned short *lastj)
+/// @brief 
+/// @param FinalMatrix Matriz onde a busca está sendo realizada
+/// @param size tamanho da matriz pesquisada
+/// @param i distância em relaçao ao deslocamneto em linhas
+/// @param j distância em relação ao deslocamento por colunas
+/// @param lasti valor em relação ao deslocamento em linhas da última posição na matriz 
+/// @param lastj valor em relação ao deslocamento em colunas da última posição na matriz 
+void FivePossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size, unsigned short *lasti, unsigned short *lastj)
 {
 
+    unsigned short int IndexHigher = 0;
     unsigned short int PossibleHigher[5];
     unsigned short int Possiblei[5];
     unsigned short int Possiblej[5];
@@ -184,20 +219,28 @@ void FivePossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned
     for(int index = 0;index<length;index++)
     {
         if(PossibleHigher[index]>Auxiliary && (Possiblei[index]!=*lasti || Possiblej[index]!=*lastj))
-            *IndexHigher = index;
+            IndexHigher = index;
 
-        Auxiliary = PossibleHigher[*IndexHigher];
+        Auxiliary = PossibleHigher[IndexHigher];
     }
 
     *lasti = *i;
     *lastj = *j;
-    *i = Possiblei[*IndexHigher];
-    *j = Possiblej[*IndexHigher];
+    *i = Possiblei[IndexHigher];
+    *j = Possiblej[IndexHigher];
 }
 
-void SouthEastPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size, unsigned short int *IndexHigher, unsigned short *lasti, unsigned short *lastj)
+/// @brief 
+/// @param FinalMatrix Matriz onde a busca está sendo realizada
+/// @param size tamanho da matriz pesquisada
+/// @param i distância em relaçao ao deslocamneto em linhas
+/// @param j distância em relação ao deslocamento por colunas
+/// @param lasti valor em relação ao deslocamento em linhas da última posição na matriz 
+/// @param lastj valor em relação ao deslocamento em colunas da última posição na matriz 
+void SouthEastPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size,unsigned short *lasti, unsigned short *lastj)
 {
 
+    unsigned short int IndexHigher = 0;
     unsigned short int PossibleHigher[3];
     unsigned short int Possiblei[3];
     unsigned short int Possiblej[3];
@@ -220,20 +263,27 @@ void SouthEastPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,uns
     for(int index = 0;index<length;index++)
     {
         if(PossibleHigher[index]>Auxiliary && (Possiblei[index]!=*lasti || Possiblej[index]!=*lastj))
-            *IndexHigher = index;
+            IndexHigher = index;
 
-        Auxiliary = PossibleHigher[*IndexHigher];
+        Auxiliary = PossibleHigher[IndexHigher];
     }
 
     *lasti = *i;
     *lastj = *j;
-    *i = Possiblei[*IndexHigher];
-    *j = Possiblej[*IndexHigher];
+    *i = Possiblei[IndexHigher];
+    *j = Possiblej[IndexHigher];
 }
 
-void SouthWestPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size, unsigned short int *IndexHigher, unsigned short *lasti, unsigned short *lastj)
+/// @brief 
+/// @param FinalMatrix Matriz onde a busca está sendo realizada
+/// @param size tamanho da matriz pesquisada
+/// @param i distância em relaçao ao deslocamneto em linhas
+/// @param j distância em relação ao deslocamento por colunas
+/// @param lasti valor em relação ao deslocamento em linhas da última posição na matriz 
+/// @param lastj valor em relação ao deslocamento em colunas da última posição na matriz 
+void SouthWestPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,unsigned short *j,unsigned short int size, unsigned short *lasti, unsigned short *lastj)
 {
-
+    unsigned short int IndexHigher = 0;
     unsigned short int PossibleHigher[3];
     unsigned short int Possiblei[3];
     unsigned short int Possiblej[3];
@@ -256,17 +306,20 @@ void SouthWestPossibleWays(MatrixElement *FinalMatrix, unsigned short int *i,uns
     for(int index = 0;index<length;index++)
     {
         if(PossibleHigher[index]>Auxiliary && (Possiblei[index]!=*lasti || Possiblej[index]!=*lastj))
-            *IndexHigher = index;
+            IndexHigher = index;
 
-        Auxiliary = PossibleHigher[*IndexHigher];
+        Auxiliary = PossibleHigher[IndexHigher];
     }
 
     *lasti = *i;
     *lastj = *j;
-    *i = Possiblei[*IndexHigher];
-    *j = Possiblej[*IndexHigher];
+    *i = Possiblei[IndexHigher];
+    *j = Possiblej[IndexHigher];
 }
 
+/// @brief Mostra variáveis que englobam todas as pesquisas locais realizadas nas matrizes
+/// @param ReadedMatrixes Número de matrizes percorridas
+/// @param GlobalSum Soma dos elementos encontrados em todas as pesquisas locais
 void JourneyMetrics(unsigned short int ReadedMatrixes, unsigned int GlobalSum)
 {
     //Ideia de implementação:
