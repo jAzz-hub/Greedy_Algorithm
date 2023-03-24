@@ -42,6 +42,13 @@ Este repositório apresenta a solução implementada para um desafio da discipli
 - Nomes de diretórios, ou arquivos serão referênciados da seguinte forma: `Nome.txt` ou `Diretório_2`.
 
 - Nomes de comandos digitados no terminal,funções ou variáveis serão referênciados da seguinte forma: _**touch main.cpp**_, _**make run**_, __**ShowResults()**__, __**variableA**__.
+
+- Para as **Figuras** de **1** à **10**, considere a legenda de cores:
+
+    -   Azul:Uma posição futura possível.</kbd>
+    -   Cinza: Uma posição futura impossível.
+    -   Laranja: Posição atual ou inicial.
+    -   Rosa: Posição futura escolhida.
 <br><br>
 ## Objetivo
 A problemática proposta incita os alunos da disciplina a desenvolverem um programa que leia $K$ matrizes de ordem $N$. Considerando essa proposição algumas exigências de desenvolvimento solicitadas foram:
@@ -51,7 +58,7 @@ A problemática proposta incita os alunos da disciplina a desenvolverem um progr
 
 - Os movimentos válidos para deslocamento pela matriz são listados à seguir e visualizados de azul na Figura 1, considerando o ponto de partida atual sendo o elemento colorido de laranja:
     
-    - Avançar para a próxima coluna, ou seja deslocar-se para $i = $ .
+    - Avançar para a próxima coluna.
     
     - Retroceder a coluna anterior.
     
@@ -185,6 +192,57 @@ ____________________________________________
 </div>
 <br>
 
+#### 3.4. Casos Especiais
+Existem alguns casos particulares onde teremos os seguintes movimentos:
+
+- Quando a posição atual como $a_{ij}$ tem seus valores de $i = N-1$ e $j =N-1 $, ou seja, quando a posição atual for a última posição.Nesse caso a pesquisa na matriz é finalizada.
+<div align="center">
+
+<strong>Figura 7</strong> - Casa inicial ou presente é igual casa final.    
+<br>
+<img src="./img/Imagem7.png" width="35%">
+<br>
+Fonte: Construção pelo autor⁷.
+<br>
+____________________________________________
+<br>⁷Criada usando o Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+</div>
+<br>
+
+- Quando a posição atual como $a_{ij}$ tem seus valores de $i = N-1$ com  $j$ sendo qualquer valor, ou seja, quando a posição atual está na última linha da matriz. Nesse caso o único movimento possível é avançando em colunas, ou seja de forma que o próximo passo tenha o $i$ constante e o $j=j+1$ até que se chegue à última casa. Isso acontece pelo fato de que ao chegar à última linha realizar um movimento que não siga essas diretrizes resultará na impossibilidade de continuar caminhando sem ter chegado ao final da matriz.
+
+<div align="center">
+
+<strong>Figura 8</strong> - Casa inicial ou presente tem $i = N-1$    
+<br>
+<img src="./img/Imagem8.png" width="35%">
+<br>
+Fonte: Construção pelo autor⁸.
+<br>
+____________________________________________
+<br>⁸Criada usando o Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+</div>
+<br>
+
+- Em casos de execução das funções: _**SouthWestPossibleWays**_, _**SouthEastPossibleWays**_ ou _**FivePossibleWays**_ onde os valores de duas ou mais casas adjascentes são iguais, haverá sempre preferência pelas casas adjascentes de maior valor na seguinte ordem:
+    
+    - 1º Escolha do elemento com $i = i+1$ e $j = j$, ou seja, elemento abaixo.
+    - 2º Escolha do elemento com $i = i+1$ e $j = j+1$, ou seja, elemento abaixo na diagonal direita.
+    - 3º Escolha do elemento com $i = i+1$ e $j = j$, ou seja, à direita.
+    - 4º Escolha do elemento com $i = i+1$ e $j = j-1$, ou seja, à direita.
+    
+<div align="center">
+
+<strong>Figura 9</strong> - Casas adjascentes à inical com valor igual    
+<br>
+<img src="./img/Imagem9.png" width="35%">
+<br>
+Fonte: Construção pelo autor⁹.
+<br>
+____________________________________________
+<br>⁹Criada usando o Google Sheets, Disponível em <a href="https://docs.google.com/spreadsheets/d/1nbK5ybx7Lwp98y11IScqkPUhSizV1jwG1KyGsdvTEjI/edit?usp=sharing">Planilha</a>.
+</div>
+<br>
 
 
 ## Reflexões e Aprendizados
@@ -248,25 +306,25 @@ Para compilação e execução do código é necessário que seja criado um arqu
 [4] GNU Make. Disponível em: <https://www.gnu.org/software/make/>. Acesso em: mar. 23DC.
 
 ‌
-‌
-## Contato
+<div align="center">‌
 
-<div style="display: inline-block;">
+## Contato
+<br>
+
 <a href="https://t.me/joaaogg">
-<img align="center" height="20px" width="90px" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
+<img align="center" width="20%" height="20%" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/> 
 </a>
+<br>
+<br>
 
 <a href="https://www.linkedin.com/in/joao-gustavo-silva/">
-<img align="center" height="20px" width="90px" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+<img align="center" width="20%" height="20%" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
-
-</div>
-
-<p> </p>
+<br>
+<br>
 
 <a style="color:black" href="mailto:michel@cefetmg.br?subject=[GitHub]%20Source%20Dynamic%20Lists">
 ✉️ <i>joaogu.2001@gmail.com</i>
 </a>
-
 
 </div>
