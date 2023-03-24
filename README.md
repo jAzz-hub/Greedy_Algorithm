@@ -335,6 +335,31 @@ Para compilação e execução do código é necessário que seja criado um arqu
 </tr>
 </table>
 
+## Ambiente de desenvolvimento:
+O código foi desenvolvido e testado no seguinte ambiente de desenvolvimento:
+
+<table>
+<tr>
+<td colspan = '1' align="center"><strong>Peças</strong></td>
+<td align = "center" colspan = '1'><strong>Especificações</strong></td>
+</tr>
+
+<tr>
+<td align="center"><strong><i>Processador</i></strong>
+</td>
+<td align="center">Intel(R) Core(TM) i5-3340M CPU @ 2.70GHz</td>
+</tr>
+<tr>
+<td align="center"><strong><i>Memória RAM</i></strong></td>
+<td align="center">8 GB </td>
+</tr>
+<tr>
+<td align="center"><strong><i>Sistema Operacional</i></strong></td>
+<td>Linux fedora 6.2.7-100.fc36.x86_64 </td>
+</tr>
+</table>
+
+
 <br><br>
 ## Referências <!--Idea!! CITAR O NÍVIO ZIVIANI-->
 
