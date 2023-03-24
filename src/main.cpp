@@ -160,4 +160,8 @@ int main()
     }
     
     JourneyMetrics(MatrixCounting, GlobalSum);
+
+    File.close();
+    
+    return 0;
 }
