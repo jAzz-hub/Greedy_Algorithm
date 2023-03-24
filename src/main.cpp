@@ -1,31 +1,10 @@
-/*
-Documentação:
-Qual o problema que está sendo resolvido
-COmo está sendo resolvido?
-Como eu resolvi usando o gulos?
-    De acordo com a figura 1 as figuras que eu tomo são:
-        Se...
-        Se não...
-
-As entradas necessárias são:
-    arquivo tal...
-
-Dada essa entrada, o código da x output
-
-Usar tabela com Makefile do Michel representando como rodar o código
-
-Colocar o contato para possível comunicação com futuros leitores deste repositório
-*/
 
 #include "structures.hpp"
-
-//--!--Lembrete--!-- Testar implementação com o fseek posteriormente
 
 using namespace std;
 int main()
 {
     unsigned short int size = SizeRecon();
-    //Pegando o tamanho do arquivo;
 
     string Line;
     char string_generic[1];
@@ -43,6 +22,7 @@ int main()
     {
         // Criando um pointeiro de char do tamanho da linha do arquivo:
         char *copy = new char[Line.length() + 1];
+
         // Passando os dados de Line para copy e selecionando os dados desejados:
         strcpy(copy, Line.c_str());
         CharPointer = strtok(copy, " \n \0");
@@ -56,7 +36,8 @@ int main()
                 MatrixColumns=0;
                 cout<<"\n\n\n\n Nova iteração \n\n\n\t"<<++MatrixCounting<<"ª"<<" Matriz Lida\n";
                 MatrixScanner(size,(MatrixElement *)FinalMatrix);
-                //Iníciando a corrida pela matriz:
+                
+                //Iníciando variáveis para pesquisa na matriz:
                 bool S,SW,SE,E,W;
                 vector<unsigned short int> StepsOni;
                 vector<unsigned short int> StepsOnj;
@@ -162,6 +143,6 @@ int main()
     JourneyMetrics(MatrixCounting, GlobalSum);
 
     File.close();
-    
+
     return 0;
 }
