@@ -244,6 +244,48 @@ ____________________________________________
 </div>
 <br>
 
+## Implementação
+Em função de representar é realizado pelo algoritmo diante da entrada no arquivo <a href="dataset/input.data">`input.data`</a>, observe as imagens abaixo. Considere que nas saídas, números diferentes de 999 repersentam a ordem da caminhada realizada, sendo 999 uma forma de representar localizações fora do trajeto:
+
+<div align="center">
+
+<strong>Figura 10</strong> - Entrada e saída de dados Matriz 1
+<br>
+<img src="./img/Entrada1.png" width="68%">
+<br>
+<br><br>
+<strong>Figura 11 - </strong>
+Saída de dados Matriz 1
+<br>
+<img src="./img/Saída1.png" width="68%">
+<br>
+<br>
+<strong>Figura 12 - </strong>
+Entrada de dados Matriz 2
+<br>
+<img src="./img/Entrada2.png" width="68%">
+<br>
+<br>
+<strong>Figura 13 - </strong>
+Saída de dados Matriz 2
+<br>
+<img src="./img/Saída2.png" width="68%">
+<br>
+<br>
+<strong>Figura 14 - </strong>
+Saída de dados da Soma Global
+<br>
+<img src="./img/ResultadoGlobal.png" width="68%">
+<br>
+<br>
+Fonte: Captura de tela da compilação e execução realizada pelo autor ¹⁰.
+<br>
+____________________________________________
+<br>¹⁰Criada Pela Compilação do código fonte(ordem de entradas:  2 e 6, 2 e 2), Disponível em <a href="./src">Código Fonte</a>.
+</div>
+<br>
+
+
 
 ## Reflexões e Aprendizados
 
@@ -265,10 +307,9 @@ Considerando isso, são propostos por Cormen(2012) os Elementos da Estratégia G
 2. "Provar que sempre existe uma solução ótima para o problema original que usa a escolha gulosa, de modo que a escolha gulosa é sempre segura"(CORMEN, 2012, p.354)."<br><br>
 3. "Demonstrar subestrutura ótima, mostrando que, tendo feito a escolha gulosa, o que resta é o subproblema com a seguinte propriedade: se combinamos uma solução ótima para o subproblema com a escolha que fizemos, chegamos a uma solução ótima para o problema original"(CORMEN, 2012, p.354).<br><br>
 
-</p>
 
-<!--Prioridade baixa-->## Bibliotecas
-<br><br>
+<br>
+<br>
 ## Compilação e Execução
 Para compilação e execução do código é necessário que seja criado um arquivo Makefile. Para uso deste arquivo da forma correta, siga as diretrizes de execução abaixo:
 
