@@ -15,7 +15,7 @@
 
 <div align="center">
 
-# O Algoritmo Guloso
+# O Algoritmo Guloso - Meu Primeiro Estudo de Caso
 
 #### Algoritmos e Estrutura de Dados
 
