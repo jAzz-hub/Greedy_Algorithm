@@ -362,7 +362,7 @@ O código foi desenvolvido e testado no seguinte ambiente de desenvolvimento:
 <br><br>
 ## Referências <!--Idea!! CITAR O NÍVIO ZIVIANI-->
 
-[1] CORMEN, T. H. et al. Introduction to Algorithms, third edition. [s.l.] MIT Press, 2009. Acessador em 20 de Março de 2023.
+[1] CORMEN, T. H. et al. Introduction to Algorithms, third edition. [s.l.] MIT Press, 2009. Acessado em 20 de Março de 2023.
 
 [2] PIRES, MICHEL - Repositório GitHub, @mpiress: GenerateDataToMatrix - Disponível em: https://github.com/mpiress/GenerateDataToMatrix/blob/main/src/mat.h. Acessado em 15 de Março de 2023.
 
